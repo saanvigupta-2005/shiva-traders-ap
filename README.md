@@ -4,6 +4,7 @@
 A modern, responsive website for **Shiva Traders**, an Asian Paints Colour Cube store located in Dhakoli, Zirakpur, Punjab, India.
 
 The website helps customers explore paint products, browse store photos, discover colours, and visualize room colour combinations.
+https://shiva-traders-ap.vercel.app/
 
 ## Features
 
@@ -102,4 +103,3 @@ Hosted using [Vercel](https://vercel.com).
 ---
 
 © Shiva Traders – Asian Paints Colour Cube. All rights reserved.
-# shiva-traders
