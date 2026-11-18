@@ -3,188 +3,11 @@ import {
   Phone, MessageSquare, MapPin, CheckCircle2, Paintbrush, ShieldCheck, Sparkles,
   Clock, Search, Menu, X, ChevronRight, Droplet, Home as HomeIcon, Building2,
   Check, Navigation, Wrench, BookOpen, Globe, Camera, Maximize2, Star, Award,
-  ExternalLink, Share2
+  ExternalLink, Share2, Calculator
 } from 'lucide-react';
 import RoomStudio, { HeroRoom } from './RoomStudio';
-import { DICT } from './translations';
 
 
-function GoogleTranslate() {
-  const [language, setLanguage] = useState('en');
-  const languages = [
-    { value: 'af', label: 'Afrikaans' },
-    { value: 'sq', label: 'Albanian' },
-    { value: 'am', label: 'Amharic' },
-    { value: 'ar', label: 'Arabic' },
-    { value: 'hy', label: 'Armenian' },
-    { value: 'az', label: 'Azerbaijani' },
-    { value: 'eu', label: 'Basque' },
-    { value: 'be', label: 'Belarusian' },
-    { value: 'bn', label: 'Bengali' },
-    { value: 'bs', label: 'Bosnian' },
-    { value: 'bg', label: 'Bulgarian' },
-    { value: 'ca', label: 'Catalan' },
-    { value: 'ceb', label: 'Cebuano' },
-    { value: 'zh-CN', label: 'Chinese (Simplified)' },
-    { value: 'zh-TW', label: 'Chinese (Traditional)' },
-    { value: 'co', label: 'Corsican' },
-    { value: 'hr', label: 'Croatian' },
-    { value: 'cs', label: 'Czech' },
-    { value: 'da', label: 'Danish' },
-    { value: 'nl', label: 'Dutch' },
-    { value: 'en', label: 'English' },
-    { value: 'eo', label: 'Esperanto' },
-    { value: 'et', label: 'Estonian' },
-    { value: 'fi', label: 'Finnish' },
-    { value: 'fr', label: 'French' },
-    { value: 'fy', label: 'Frisian' },
-    { value: 'gl', label: 'Galician' },
-    { value: 'ka', label: 'Georgian' },
-    { value: 'de', label: 'German' },
-    { value: 'el', label: 'Greek' },
-    { value: 'gu', label: 'Gujarati' },
-    { value: 'ht', label: 'Haitian Creole' },
-    { value: 'ha', label: 'Hausa' },
-    { value: 'haw', label: 'Hawaiian' },
-    { value: 'he', label: 'Hebrew' },
-    { value: 'hi', label: 'Hindi' },
-    { value: 'hmn', label: 'Hmong' },
-    { value: 'hu', label: 'Hungarian' },
-    { value: 'is', label: 'Icelandic' },
-    { value: 'ig', label: 'Igbo' },
-    { value: 'id', label: 'Indonesian' },
-    { value: 'ga', label: 'Irish' },
-    { value: 'it', label: 'Italian' },
-    { value: 'ja', label: 'Japanese' },
-    { value: 'jv', label: 'Javanese' },
-    { value: 'kn', label: 'Kannada' },
-    { value: 'kk', label: 'Kazakh' },
-    { value: 'km', label: 'Khmer' },
-    { value: 'rw', label: 'Kinyarwanda' },
-    { value: 'ko', label: 'Korean' },
-    { value: 'ku', label: 'Kurdish' },
-    { value: 'ky', label: 'Kyrgyz' },
-    { value: 'lo', label: 'Lao' },
-    { value: 'la', label: 'Latin' },
-    { value: 'lv', label: 'Latvian' },
-    { value: 'lt', label: 'Lithuanian' },
-    { value: 'lb', label: 'Luxembourgish' },
-    { value: 'mk', label: 'Macedonian' },
-    { value: 'mg', label: 'Malagasy' },
-    { value: 'ms', label: 'Malay' },
-    { value: 'ml', label: 'Malayalam' },
-    { value: 'mt', label: 'Maltese' },
-    { value: 'mi', label: 'Maori' },
-    { value: 'mr', label: 'Marathi' },
-    { value: 'mn', label: 'Mongolian' },
-    { value: 'my', label: 'Myanmar (Burmese)' },
-    { value: 'ne', label: 'Nepali' },
-    { value: 'no', label: 'Norwegian' },
-    { value: 'ny', label: 'Nyanja' },
-    { value: 'or', label: 'Odia' },
-    { value: 'ps', label: 'Pashto' },
-    { value: 'fa', label: 'Persian' },
-    { value: 'pl', label: 'Polish' },
-    { value: 'pt', label: 'Portuguese' },
-    { value: 'pa', label: 'Punjabi' },
-    { value: 'ro', label: 'Romanian' },
-    { value: 'ru', label: 'Russian' },
-    { value: 'sm', label: 'Samoan' },
-    { value: 'gd', label: 'Scots Gaelic' },
-    { value: 'sr', label: 'Serbian' },
-    { value: 'st', label: 'Sesotho' },
-    { value: 'sn', label: 'Shona' },
-    { value: 'sd', label: 'Sindhi' },
-    { value: 'si', label: 'Sinhala' },
-    { value: 'sk', label: 'Slovak' },
-    { value: 'sl', label: 'Slovenian' },
-    { value: 'so', label: 'Somali' },
-    { value: 'es', label: 'Spanish' },
-    { value: 'su', label: 'Sundanese' },
-    { value: 'sw', label: 'Swahili' },
-    { value: 'sv', label: 'Swedish' },
-    { value: 'tl', label: 'Tagalog' },
-    { value: 'tg', label: 'Tajik' },
-    { value: 'ta', label: 'Tamil' },
-    { value: 'tt', label: 'Tatar' },
-    { value: 'te', label: 'Telugu' },
-    { value: 'th', label: 'Thai' },
-    { value: 'tr', label: 'Turkish' },
-    { value: 'tk', label: 'Turkmen' },
-    { value: 'uk', label: 'Ukrainian' },
-    { value: 'ur', label: 'Urdu' },
-    { value: 'ug', label: 'Uyghur' },
-    { value: 'uz', label: 'Uzbek' },
-    { value: 'vi', label: 'Vietnamese' },
-    { value: 'cy', label: 'Welsh' },
-    { value: 'xh', label: 'Xhosa' },
-    { value: 'yi', label: 'Yiddish' },
-    { value: 'yo', label: 'Yoruba' },
-    { value: 'zu', label: 'Zulu' }
-  ];
-
-  useEffect(() => {
-    const elementId = 'google_translate_element';
-    const scriptId = 'google-translate-script';
-
-    window.loadGoogleTranslate = function () {
-      const translate = window.google?.translate;
-      const element = document.getElementById(elementId);
-      if (!translate?.TranslateElement || !element || element.dataset.initialized === 'true') return;
-
-      new translate.TranslateElement(
-        { pageLanguage: 'en', autoDisplay: false, layout: translate.TranslateElement.InlineLayout.SIMPLE },
-        elementId
-      );
-      element.dataset.initialized = 'true';
-    };
-
-    let script = document.getElementById(scriptId);
-    if (!script) {
-      script = document.createElement('script');
-      script.id = scriptId;
-      script.src = 'https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate';
-      script.async = true;
-      document.body.appendChild(script);
-    } else if (window.google?.translate?.TranslateElement) {
-      window.loadGoogleTranslate();
-    }
-  }, []);
-
-  const changeLanguage = (code) => {
-    setLanguage(code);
-    const combo = document.querySelector('#google_translate_element select.goog-te-combo');
-    if (!combo) return;
-    combo.value = code;
-    combo.dispatchEvent(new Event('change', { bubbles: true }));
-  };
-
-  return (
-    <>
-      <style>{`
-        .goog-te-banner-frame, .goog-te-balloon-frame, #goog-gt-tt,
-        .goog-te-gadget, .goog-te-gadget-icon { display: none !important; }
-        body { top: 0 !important; }
-        html { margin-top: 0 !important; }
-        #google_translate_element { position: fixed !important; left: -10000px !important; top: 0 !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
-        .goog-logo-link, .goog-te-gadget span { display: none !important; }
-      `}</style>
-      <div id="google_translate_element" aria-hidden="true" />
-      <label className="ml-2 inline-flex items-center gap-2 rounded-xl border border-slate-600 bg-slate-800 px-3 py-2 text-xs sm:text-sm font-semibold text-white shadow-sm">
-        <Globe className="h-4 w-4 text-amber-400" aria-hidden="true" />
-        <span className="hidden sm:inline">Translate</span>
-        <select
-          aria-label="Translate website into another language"
-          value={language}
-          onChange={(event) => changeLanguage(event.target.value)}
-          className="max-w-[145px] bg-transparent text-white outline-none cursor-pointer"
-        >
-          {languages.map((item) => <option key={item.value} value={item.value} className="bg-slate-900 text-white">{item.label}</option>)}
-        </select>
-      </label>
-    </>
-  );
-}
 
 /* ---------------- BUSINESS DATA ---------------- */
 const BIZ = {
@@ -324,7 +147,7 @@ const PageHead = ({ eyebrow, title, desc }) => (
 );
 const WaLink = ({ msg, children, className = '' }) => (
   <a href={wa(msg)} target="_blank" rel="noopener noreferrer"
-    className={`bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold px-4 py-3 rounded-xl inline-flex items-center justify-center gap-2 transition-colors ${className}`}>
+    className={`bg-[#25D366] hover:bg-[#20BA5A] text-white text-xs font-bold px-4 py-3 rounded-xl inline-flex items-center justify-center gap-2 transition-colors ${className}`}>
     <MessageSquare className="w-4 h-4" aria-hidden="true" /> {children}
   </a>
 );
@@ -340,6 +163,185 @@ const Img = ({ src, alt, className }) => {
   return <img src={src} alt={alt} loading="lazy" onError={() => setFailed(true)} className={className} />;
 };
 
+const DICT = {
+  hi: {
+    'Asian Paints Colour Cube – Zirakpur': 'एशियन पेंट्स कलर क्यूब – ज़ीरकपुर',
+    'Located at SCO 423, Green City, Dhakoli, Zirakpur, Shiva Traders supplies Asian Paints emulsions, primers, putty and SmartCare waterproofing products, with tinting and shade guidance in store.': 'SCO 423, ग्रीन सिटी, ढकोली, ज़ीरकपुर में स्थित शिवा ट्रेडर्स एशियन पेंट्स इमल्शन, प्राइमर, पुट्टी और स्मार्टकेयर वॉटरप्रूफिंग उत्पाद उपलब्ध कराता है। दुकान पर रंग मिलाने और शेड चुनने में भी मदद मिलती है।',
+    'Our Store': 'हमारी दुकान',
+    'Visit us to look through physical shade cards, compare finishes and get advice that suits your home and lighting.': 'फिजिकल शेड कार्ड देखें, फिनिश की तुलना करें और अपने घर व रोशनी के अनुसार सलाह लें।',
+    'Asian Paints Products': 'एशियन पेंट्स उत्पाद',
+    'Ask us about availability, pack sizes and which product suits your wall, terrace or bathroom.': 'उपलब्धता, पैक साइज़ और दीवार, छत या बाथरूम के लिए सही उत्पाद पूछें।',
+    'Areas We Serve': 'हमारे सेवा क्षेत्र',
+    'Asian Paints Retail Stock': 'एशियन पेंट्स स्टॉक',
+    'Explore Paint Products': 'पेंट उत्पाद देखें',
+    'Interior and exterior paints, wood finishes, primers and putty. Message us for current price and availability.': 'इंटीरियर व एक्सटीरियर पेंट, वुड फिनिश, प्राइमर और पुट्टी। मौजूदा कीमत और उपलब्धता के लिए संदेश करें।',
+    'All Products': 'सभी उत्पाद',
+    'Interior': 'इंटीरियर',
+    'Exterior': 'एक्सटीरियर',
+    'Wood & Metal': 'लकड़ी और धातु',
+    'Primers & Putty': 'प्राइमर और पुट्टी',
+    'Finish:': 'फिनिश:',
+    'Check Price & Availability': 'कीमत और उपलब्धता पूछें',
+    'Coverage and performance vary by surface and application. Please check the product label or ask us in store.': 'कवरेज और प्रदर्शन सतह व उपयोग पर निर्भर करते हैं। उत्पाद लेबल देखें या दुकान पर पूछें।',
+    'Guidance & Painting Enquiries': 'पेंटिंग मार्गदर्शन और पूछताछ',
+    'Residential & Commercial Painting': 'घर और व्यावसायिक पेंटिंग',
+    'Get shade and product guidance and painting enquiries in Dhakoli, Zirakpur and Panchkula.': 'ढकोली, ज़ीरकपुर और पंचकुला में शेड, उत्पाद मार्गदर्शन और पेंटिंग संबंधी पूछताछ करें।',
+    'Enquire on WhatsApp': 'व्हाट्सएप पर पूछें',
+    'Asian Paints SmartCare Range': 'एशियन पेंट्स स्मार्टकेयर रेंज',
+    'Waterproofing Solutions': 'वॉटरप्रूफिंग समाधान',
+    'Tell us where the dampness or leakage is and we will suggest suitable products.': 'सीलन या लीकेज की जगह बताएं, हम उपयुक्त उत्पाद सुझाएंगे।',
+    'Use:': 'उपयोग:',
+    'Indicative Colour Previews': 'रंगों के नमूने',
+    'Colour Studio': 'कलर स्टूडियो',
+    'Browse shade ideas and try them in the room preview. On-screen colours vary by display, so please check the physical shade card in store before buying.': 'शेड के सुझाव देखें और रूम प्रीव्यू में आज़माएं। स्क्रीन पर रंग अलग दिख सकते हैं, खरीदने से पहले दुकान में असली शेड कार्ड देखें।',
+    'Search shade name or code': 'शेड का नाम या कोड खोजें',
+    'Tap “Try in room” on any shade to see it on a wall.': 'दीवार पर देखने के लिए किसी शेड पर “रूम में आज़माएं” दबाएं।',
+    'No shades match your search. Try a different name or code.': 'आपकी खोज से कोई शेड नहीं मिला। दूसरा नाम या कोड आज़माएं।',
+    'Try in room': 'रूम में आज़माएं',
+    'Enquire': 'पूछताछ',
+    'Green City, Dhakoli': 'ग्रीन सिटी, ढकोली',
+    'Inside Shiva Traders': 'शिवा ट्रेडर्स के अंदर',
+    'Our showroom counters, product displays and shade selection area.': 'हमारे शोरूम काउंटर, उत्पाद डिस्प्ले और शेड चयन क्षेत्र।',
+    'Quantity Estimator': 'मात्रा अनुमान',
+    'Paint Quantity Calculator': 'पेंट मात्रा कैलकुलेटर',
+    'A rough estimate of paint, primer and putty for your walls. Actual needs depend on the surface and product.': 'दीवारों के लिए पेंट, प्राइमर और पुट्टी का अनुमान। वास्तविक मात्रा सतह और उत्पाद पर निर्भर करती है।',
+    'By Room Size': 'कमरे के आकार से',
+    'By Wall Area': 'दीवार के क्षेत्रफल से',
+    'Length (ft)': 'लंबाई (फीट)',
+    'Width (ft)': 'चौड़ाई (फीट)',
+    'Height (ft)': 'ऊंचाई (फीट)',
+    'Total wall area (sq. ft.)': 'कुल दीवार क्षेत्र (वर्ग फीट)',
+    'Doors': 'दरवाज़े',
+    'Windows': 'खिड़कियां',
+    'Coats': 'कोट',
+    'Paint type': 'पेंट प्रकार',
+    'Include primer': 'प्राइमर शामिल करें',
+    'Include wall putty': 'वॉल पुट्टी शामिल करें',
+    'Estimated Materials': 'अनुमानित सामग्री',
+    'Net paintable area': 'पेंट करने योग्य क्षेत्र',
+    'Topcoat paint': 'फिनिश पेंट',
+    'Primer': 'प्राइमर',
+    'Wall putty': 'वॉल पुट्टी',
+    'Rough material cost': 'सामग्री की अनुमानित लागत',
+    'Indicative only. Prices change and labour is not included. Message us for the current rate.': 'यह केवल अनुमान है। कीमत बदल सकती है और मजदूरी शामिल नहीं है। वर्तमान दर के लिए संदेश करें।',
+    'Get a Quote on WhatsApp': 'व्हाट्सएप पर कोटेशन लें',
+    'Offers': 'ऑफर',
+    'Ask About Current Offers': 'मौजूदा ऑफर पूछें',
+    'Offers change from time to time. Message or call us to find out what is available now.': 'ऑफर समय-समय पर बदलते हैं। अभी उपलब्ध ऑफर जानने के लिए संदेश या कॉल करें।',
+    'Shade Consultation': 'शेड परामर्श',
+    'Bring photos of your walls to the store and we will help you plan colours using shade cards.': 'दीवारों की तस्वीरें दुकान पर लाएं। शेड कार्ड से रंग चुनने में हम मदद करेंगे।',
+    'Open Room Preview': 'रूम प्रीव्यू खोलें',
+    'Waterproofing Advice': 'वॉटरप्रूफिंग सलाह',
+    'Tell us about your terrace, wall or bathroom problem and we will suggest suitable SmartCare products.': 'छत, दीवार या बाथरूम की समस्या बताएं, हम उपयुक्त स्मार्टकेयर उत्पाद सुझाएंगे।',
+    'Ask on WhatsApp': 'व्हाट्सएप पर पूछें',
+    'Visit or Reach Us': 'आएं या संपर्क करें',
+    'Contact Shiva Traders': 'शिवा ट्रेडर्स से संपर्क करें',
+    'Store location': 'दुकान का पता',
+    'Phone': 'फ़ोन',
+    'Open in Google Maps': 'गूगल मैप्स में खोलें',
+    'Send a WhatsApp Enquiry': 'व्हाट्सएप पूछताछ भेजें',
+    'Your name': 'आपका नाम',
+    'Service': 'सेवा',
+    'Area': 'क्षेत्र',
+    'Your requirement': 'आपकी आवश्यकता',
+    'Shade, wall area, or the waterproofing problem': 'शेड, दीवार का क्षेत्र या वॉटरप्रूफिंग समस्या',
+    'Send Message via WhatsApp': 'व्हाट्सएप पर संदेश भेजें',
+    'Asian Paints Colour Cube store for paints, primers and SmartCare waterproofing products in Zirakpur.': 'ज़ीरकपुर में पेंट, प्राइमर और स्मार्टकेयर वॉटरप्रूफिंग उत्पादों के लिए एशियन पेंट्स कलर क्यूब स्टोर।',
+    'Quick links': 'त्वरित लिंक',
+    'Service areas': 'सेवा क्षेत्र',
+    'Contact': 'संपर्क',
+    'Google Maps location': 'गूगल मैप्स लोकेशन'
+  },
+  pa: {
+    'Asian Paints Colour Cube – Zirakpur': 'ਏਸ਼ੀਅਨ ਪੇਂਟਸ ਕਲਰ ਕਿਊਬ – ਜ਼ੀਰਕਪੁਰ',
+    'Located at SCO 423, Green City, Dhakoli, Zirakpur, Shiva Traders supplies Asian Paints emulsions, primers, putty and SmartCare waterproofing products, with tinting and shade guidance in store.': 'SCO 423, ਗ੍ਰੀਨ ਸਿਟੀ, ਢਕੋਲੀ, ਜ਼ੀਰਕਪੁਰ ਵਿੱਚ ਸ਼ਿਵਾ ਟ੍ਰੇਡਰਜ਼ ਏਸ਼ੀਅਨ ਪੇਂਟਸ ਇਮਲਸ਼ਨ, ਪ੍ਰਾਈਮਰ, ਪੁੱਟੀ ਅਤੇ ਸਮਾਰਟਕੇਅਰ ਵਾਟਰਪ੍ਰੂਫਿੰਗ ਉਤਪਾਦ ਦਿੰਦਾ ਹੈ। ਦੁਕਾਨ ’ਤੇ ਰੰਗ ਮਿਲਾਉਣ ਅਤੇ ਸ਼ੇਡ ਚੁਣਨ ਵਿੱਚ ਵੀ ਮਦਦ ਮਿਲਦੀ ਹੈ।',
+    'Our Store': 'ਸਾਡੀ ਦੁਕਾਨ',
+    'Visit us to look through physical shade cards, compare finishes and get advice that suits your home and lighting.': 'ਅਸਲੀ ਸ਼ੇਡ ਕਾਰਡ ਵੇਖੋ, ਫਿਨਿਸ਼ ਦੀ ਤੁਲਨਾ ਕਰੋ ਅਤੇ ਘਰ ਤੇ ਰੋਸ਼ਨੀ ਅਨੁਸਾਰ ਸਲਾਹ ਲਵੋ।',
+    'Asian Paints Products': 'ਏਸ਼ੀਅਨ ਪੇਂਟਸ ਉਤਪਾਦ',
+    'Ask us about availability, pack sizes and which product suits your wall, terrace or bathroom.': 'ਉਪਲਬਧਤਾ, ਪੈਕ ਸਾਈਜ਼ ਅਤੇ ਕੰਧ, ਛੱਤ ਜਾਂ ਬਾਥਰੂਮ ਲਈ ਢੁਕਵਾਂ ਉਤਪਾਦ ਪੁੱਛੋ।',
+    'Areas We Serve': 'ਸਾਡੇ ਸੇਵਾ ਖੇਤਰ',
+    'Asian Paints Retail Stock': 'ਏਸ਼ੀਅਨ ਪੇਂਟਸ ਸਟਾਕ',
+    'Explore Paint Products': 'ਪੇਂਟ ਉਤਪਾਦ ਵੇਖੋ',
+    'Interior and exterior paints, wood finishes, primers and putty. Message us for current price and availability.': 'ਇੰਟੀਰੀਅਰ ਅਤੇ ਐਕਸਟੀਰੀਅਰ ਪੇਂਟ, ਵੁੱਡ ਫਿਨਿਸ਼, ਪ੍ਰਾਈਮਰ ਅਤੇ ਪੁੱਟੀ। ਮੌਜੂਦਾ ਕੀਮਤ ਅਤੇ ਉਪਲਬਧਤਾ ਲਈ ਸੁਨੇਹਾ ਕਰੋ।',
+    'All Products': 'ਸਾਰੇ ਉਤਪਾਦ',
+    'Interior': 'ਇੰਟੀਰੀਅਰ',
+    'Exterior': 'ਐਕਸਟੀਰੀਅਰ',
+    'Wood & Metal': 'ਲੱਕੜ ਅਤੇ ਧਾਤ',
+    'Primers & Putty': 'ਪ੍ਰਾਈਮਰ ਅਤੇ ਪੁੱਟੀ',
+    'Finish:': 'ਫਿਨਿਸ਼:',
+    'Check Price & Availability': 'ਕੀਮਤ ਅਤੇ ਉਪਲਬਧਤਾ ਪੁੱਛੋ',
+    'Coverage and performance vary by surface and application. Please check the product label or ask us in store.': 'ਕਵਰੇਜ ਅਤੇ ਕਾਰਗੁਜ਼ਾਰੀ ਸਤ੍ਹਾ ਅਤੇ ਵਰਤੋਂ ’ਤੇ ਨਿਰਭਰ ਕਰਦੀ ਹੈ। ਲੇਬਲ ਵੇਖੋ ਜਾਂ ਦੁਕਾਨ ’ਤੇ ਪੁੱਛੋ।',
+    'Guidance & Painting Enquiries': 'ਪੇਂਟਿੰਗ ਸਲਾਹ ਅਤੇ ਪੁੱਛਗਿੱਛ',
+    'Residential & Commercial Painting': 'ਘਰ ਅਤੇ ਵਪਾਰਕ ਪੇਂਟਿੰਗ',
+    'Get shade and product guidance and painting enquiries in Dhakoli, Zirakpur and Panchkula.': 'ਢਕੋਲੀ, ਜ਼ੀਰਕਪੁਰ ਅਤੇ ਪੰਚਕੂਲਾ ਵਿੱਚ ਸ਼ੇਡ, ਉਤਪਾਦ ਸਲਾਹ ਅਤੇ ਪੇਂਟਿੰਗ ਬਾਰੇ ਪੁੱਛੋ।',
+    'Enquire on WhatsApp': 'ਵਟਸਐਪ ’ਤੇ ਪੁੱਛੋ',
+    'Asian Paints SmartCare Range': 'ਏਸ਼ੀਅਨ ਪੇਂਟਸ ਸਮਾਰਟਕੇਅਰ ਰੇਂਜ',
+    'Waterproofing Solutions': 'ਵਾਟਰਪ੍ਰੂਫਿੰਗ ਹੱਲ',
+    'Tell us where the dampness or leakage is and we will suggest suitable products.': 'ਸੀਲਨ ਜਾਂ ਲੀਕੇਜ ਕਿੱਥੇ ਹੈ ਦੱਸੋ, ਅਸੀਂ ਢੁਕਵੇਂ ਉਤਪਾਦ ਸੁਝਾਵਾਂਗੇ।',
+    'Use:': 'ਵਰਤੋਂ:',
+    'Indicative Colour Previews': 'ਰੰਗਾਂ ਦੇ ਨਮੂਨੇ',
+    'Colour Studio': 'ਕਲਰ ਸਟੂਡੀਓ',
+    'Browse shade ideas and try them in the room preview. On-screen colours vary by display, so please check the physical shade card in store before buying.': 'ਸ਼ੇਡ ਦੇ ਸੁਝਾਅ ਵੇਖੋ ਅਤੇ ਰੂਮ ਪ੍ਰੀਵਿਊ ਵਿੱਚ ਅਜ਼ਮਾਓ। ਸਕ੍ਰੀਨ ’ਤੇ ਰੰਗ ਵੱਖਰੇ ਹੋ ਸਕਦੇ ਹਨ, ਖਰੀਦਣ ਤੋਂ ਪਹਿਲਾਂ ਦੁਕਾਨ ’ਤੇ ਅਸਲੀ ਸ਼ੇਡ ਕਾਰਡ ਵੇਖੋ।',
+    'Search shade name or code': 'ਸ਼ੇਡ ਦਾ ਨਾਮ ਜਾਂ ਕੋਡ ਖੋਜੋ',
+    'Tap “Try in room” on any shade to see it on a wall.': 'ਕੰਧ ’ਤੇ ਵੇਖਣ ਲਈ ਕਿਸੇ ਸ਼ੇਡ ’ਤੇ “ਕਮਰੇ ਵਿੱਚ ਅਜ਼ਮਾਓ” ਦਬਾਓ।',
+    'No shades match your search. Try a different name or code.': 'ਤੁਹਾਡੀ ਖੋਜ ਨਾਲ ਕੋਈ ਸ਼ੇਡ ਨਹੀਂ ਮਿਲਿਆ। ਹੋਰ ਨਾਮ ਜਾਂ ਕੋਡ ਅਜ਼ਮਾਓ।',
+    'Try in room': 'ਕਮਰੇ ਵਿੱਚ ਅਜ਼ਮਾਓ',
+    'Enquire': 'ਪੁੱਛੋ',
+    'Green City, Dhakoli': 'ਗ੍ਰੀਨ ਸਿਟੀ, ਢਕੋਲੀ',
+    'Inside Shiva Traders': 'ਸ਼ਿਵਾ ਟ੍ਰੇਡਰਜ਼ ਅੰਦਰ',
+    'Our showroom counters, product displays and shade selection area.': 'ਸਾਡੇ ਸ਼ੋਰੂਮ ਕਾਊਂਟਰ, ਉਤਪਾਦ ਡਿਸਪਲੇਅ ਅਤੇ ਸ਼ੇਡ ਚੋਣ ਖੇਤਰ।',
+    'Quantity Estimator': 'ਮਾਤਰਾ ਅਨੁਮਾਨ',
+    'Paint Quantity Calculator': 'ਪੇਂਟ ਮਾਤਰਾ ਕੈਲਕੁਲੇਟਰ',
+    'A rough estimate of paint, primer and putty for your walls. Actual needs depend on the surface and product.': 'ਕੰਧਾਂ ਲਈ ਪੇਂਟ, ਪ੍ਰਾਈਮਰ ਅਤੇ ਪੁੱਟੀ ਦਾ ਅੰਦਾਜ਼ਾ। ਅਸਲ ਮਾਤਰਾ ਸਤ੍ਹਾ ਅਤੇ ਉਤਪਾਦ ’ਤੇ ਨਿਰਭਰ ਕਰਦੀ ਹੈ।',
+    'By Room Size': 'ਕਮਰੇ ਦੇ ਆਕਾਰ ਅਨੁਸਾਰ',
+    'By Wall Area': 'ਕੰਧ ਦੇ ਖੇਤਰ ਅਨੁਸਾਰ',
+    'Length (ft)': 'ਲੰਬਾਈ (ਫੁੱਟ)',
+    'Width (ft)': 'ਚੌੜਾਈ (ਫੁੱਟ)',
+    'Height (ft)': 'ਉਚਾਈ (ਫੁੱਟ)',
+    'Total wall area (sq. ft.)': 'ਕੁੱਲ ਕੰਧ ਖੇਤਰ (ਵਰਗ ਫੁੱਟ)',
+    'Doors': 'ਦਰਵਾਜ਼ੇ',
+    'Windows': 'ਖਿੜਕੀਆਂ',
+    'Coats': 'ਕੋਟ',
+    'Paint type': 'ਪੇਂਟ ਕਿਸਮ',
+    'Include primer': 'ਪ੍ਰਾਈਮਰ ਸ਼ਾਮਲ ਕਰੋ',
+    'Include wall putty': 'ਵਾਲ ਪੁੱਟੀ ਸ਼ਾਮਲ ਕਰੋ',
+    'Estimated Materials': 'ਅੰਦਾਜ਼ਨ ਸਮੱਗਰੀ',
+    'Net paintable area': 'ਪੇਂਟ ਕਰਨ ਵਾਲਾ ਖੇਤਰ',
+    'Topcoat paint': 'ਫਿਨਿਸ਼ ਪੇਂਟ',
+    'Primer': 'ਪ੍ਰਾਈਮਰ',
+    'Wall putty': 'ਵਾਲ ਪੁੱਟੀ',
+    'Rough material cost': 'ਸਮੱਗਰੀ ਦੀ ਅੰਦਾਜ਼ਨ ਲਾਗਤ',
+    'Indicative only. Prices change and labour is not included. Message us for the current rate.': 'ਇਹ ਸਿਰਫ਼ ਅੰਦਾਜ਼ਾ ਹੈ। ਕੀਮਤਾਂ ਬਦਲ ਸਕਦੀਆਂ ਹਨ ਅਤੇ ਮਜ਼ਦੂਰੀ ਸ਼ਾਮਲ ਨਹੀਂ। ਮੌਜੂਦਾ ਰੇਟ ਲਈ ਸੁਨੇਹਾ ਕਰੋ।',
+    'Get a Quote on WhatsApp': 'ਵਟਸਐਪ ’ਤੇ ਕੋਟ ਲਵੋ',
+    'Offers': 'ਆਫ਼ਰ',
+    'Ask About Current Offers': 'ਮੌਜੂਦਾ ਆਫ਼ਰ ਪੁੱਛੋ',
+    'Offers change from time to time. Message or call us to find out what is available now.': 'ਆਫ਼ਰ ਬਦਲਦੇ ਰਹਿੰਦੇ ਹਨ। ਇਸ ਵੇਲੇ ਕੀ ਉਪਲਬਧ ਹੈ, ਸੁਨੇਹਾ ਜਾਂ ਕਾਲ ਕਰਕੇ ਪੁੱਛੋ।',
+    'Shade Consultation': 'ਸ਼ੇਡ ਸਲਾਹ',
+    'Bring photos of your walls to the store and we will help you plan colours using shade cards.': 'ਕੰਧਾਂ ਦੀਆਂ ਤਸਵੀਰਾਂ ਦੁਕਾਨ ’ਤੇ ਲਿਆਓ। ਸ਼ੇਡ ਕਾਰਡ ਨਾਲ ਰੰਗ ਚੁਣਨ ਵਿੱਚ ਮਦਦ ਕਰਾਂਗੇ।',
+    'Open Room Preview': 'ਰੂਮ ਪ੍ਰੀਵਿਊ ਖੋਲ੍ਹੋ',
+    'Waterproofing Advice': 'ਵਾਟਰਪ੍ਰੂਫਿੰਗ ਸਲਾਹ',
+    'Tell us about your terrace, wall or bathroom problem and we will suggest suitable SmartCare products.': 'ਛੱਤ, ਕੰਧ ਜਾਂ ਬਾਥਰੂਮ ਦੀ ਸਮੱਸਿਆ ਦੱਸੋ, ਅਸੀਂ ਢੁਕਵੇਂ ਸਮਾਰਟਕੇਅਰ ਉਤਪਾਦ ਸੁਝਾਵਾਂਗੇ।',
+    'Ask on WhatsApp': 'ਵਟਸਐਪ ’ਤੇ ਪੁੱਛੋ',
+    'Visit or Reach Us': 'ਆਓ ਜਾਂ ਸੰਪਰਕ ਕਰੋ',
+    'Contact Shiva Traders': 'ਸ਼ਿਵਾ ਟ੍ਰੇਡਰਜ਼ ਨਾਲ ਸੰਪਰਕ',
+    'Store location': 'ਦੁਕਾਨ ਦਾ ਪਤਾ',
+    'Phone': 'ਫ਼ੋਨ',
+    'Open in Google Maps': 'ਗੂਗਲ ਮੈਪਸ ਵਿੱਚ ਖੋਲ੍ਹੋ',
+    'Send a WhatsApp Enquiry': 'ਵਟਸਐਪ ਪੁੱਛਗਿੱਛ ਭੇਜੋ',
+    'Your name': 'ਤੁਹਾਡਾ ਨਾਮ',
+    'Service': 'ਸੇਵਾ',
+    'Area': 'ਇਲਾਕਾ',
+    'Your requirement': 'ਤੁਹਾਡੀ ਲੋੜ',
+    'Shade, wall area, or the waterproofing problem': 'ਸ਼ੇਡ, ਕੰਧ ਦਾ ਖੇਤਰ ਜਾਂ ਵਾਟਰਪ੍ਰੂਫਿੰਗ ਸਮੱਸਿਆ',
+    'Send Message via WhatsApp': 'ਵਟਸਐਪ ’ਤੇ ਸੁਨੇਹਾ ਭੇਜੋ',
+    'Asian Paints Colour Cube store for paints, primers and SmartCare waterproofing products in Zirakpur.': 'ਜ਼ੀਰਕਪੁਰ ਵਿੱਚ ਪੇਂਟ, ਪ੍ਰਾਈਮਰ ਅਤੇ ਸਮਾਰਟਕੇਅਰ ਵਾਟਰਪ੍ਰੂਫਿੰਗ ਉਤਪਾਦਾਂ ਲਈ ਏਸ਼ੀਅਨ ਪੇਂਟਸ ਕਲਰ ਕਿਊਬ ਸਟੋਰ।',
+    'Quick links': 'ਤੁਰੰਤ ਲਿੰਕ',
+    'Service areas': 'ਸੇਵਾ ਖੇਤਰ',
+    'Contact': 'ਸੰਪਰਕ',
+    'Google Maps location': 'ਗੂਗਲ ਮੈਪਸ ਟਿਕਾਣਾ'
+  }
+};
+
 /* ---------------- APP ---------------- */
 const TAB_IDS = ['home', 'about', 'products', 'services', 'waterproofing', 'studio', 'visualizer', 'gallery', 'calculator', 'offers', 'contact'];
 const readHash = () => {
@@ -351,6 +353,7 @@ export default function App() {
   const [tab, setTab] = useState(readHash);
   const [lang, setLang] = useState('en');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [quickCalcOpen, setQuickCalcOpen] = useState(false);
   const [productFilter, setProductFilter] = useState('all');
   const [lightbox, setLightbox] = useState(null);
   const [galleryCat, setGalleryCat] = useState('All');
@@ -428,7 +431,51 @@ export default function App() {
     l.rel = 'stylesheet';
     l.href = 'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap';
     const st = document.createElement('style');
-    st.textContent = "body{font-family:'Plus Jakarta Sans',system-ui,sans-serif}h1,h2{font-family:'Fraunces',Georgia,serif;letter-spacing:-.01em}@media (prefers-reduced-motion:reduce){*{transition:none!important}}";
+    st.textContent = `
+      body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:#f7f6f3;color:#33312e;overflow-x:hidden}
+      h1,h2{font-family:'Fraunces',Georgia,serif;letter-spacing:-.01em}
+      *,*::before,*::after{box-sizing:border-box}
+      img,video,canvas,svg{max-width:100%}
+      /* Neutral, warm-white palette overrides */
+      .bg-slate-50{background-color:#f7f6f3!important}
+      .bg-slate-100{background-color:#efede8!important}
+      .bg-slate-200{background-color:#e6e2dc!important}
+      .bg-slate-900,.bg-slate-950{background-color:#f1efeb!important}
+      .bg-slate-800{background-color:#e8e5df!important}
+      .bg-slate-700{background-color:#ddd8d0!important}
+      .bg-slate-600{background-color:#d2ccc3!important}
+      .text-white{color:#292724!important}
+      .text-slate-950,.text-slate-900{color:#292724!important}
+      .text-slate-800{color:#373430!important}
+      .text-slate-700{color:#4a4641!important}
+      .text-slate-600{color:#625d56!important}
+      .text-slate-500{color:#777169!important}
+      .text-slate-400{color:#8a837a!important}
+      .text-slate-300,.text-slate-200{color:#6d675f!important}
+      .border-slate-800,.border-slate-700,.border-slate-600{border-color:#d8d3cb!important}
+      .bg-amber-500{background-color:#c5a77b!important}
+      .bg-amber-600,.bg-amber-700{background-color:#ad9169!important}
+      .text-amber-400,.text-amber-500{color:#94754d!important}
+      .border-amber-500{border-color:#c5a77b!important}
+      .bg-emerald-700{background-color:#687f70!important}
+      .bg-orange-600{background-color:#a17d56!important}
+      .bg-gradient-to-tr{background-image:linear-gradient(135deg,#c9b69b,#a68c6b)!important}
+      header{background:#f5f3ef!important;border-color:#ddd8d0!important;color:#292724!important}
+      header nav button:hover,header button:hover{background-color:#e9e5df!important}
+      @media(max-width:640px){
+        header>div:first-child{gap:8px!important;padding-left:12px!important;padding-right:12px!important;min-height:68px!important}
+        header button[aria-label='Shiva Traders home']{min-width:0!important;gap:8px!important;max-width:calc(100% - 130px)}
+        header button[aria-label='Shiva Traders home']>div:first-child{width:36px!important;height:36px!important;flex-shrink:0}
+        header button[aria-label='Shiva Traders home'] span:first-child{font-size:15px!important;white-space:nowrap}
+        header button[aria-label='Shiva Traders home'] span:nth-child(2){font-size:9px!important;white-space:nowrap}
+        header label[aria-label='Website language']{padding:6px 7px!important;gap:4px!important;font-size:11px!important}
+        header label[aria-label='Website language'] select{max-width:75px!important;font-size:11px!important}
+        header button[aria-label='Toggle navigation menu']{padding:6px!important}
+        main{min-width:0!important}
+      }
+      @media(max-width:360px){header button[aria-label='Shiva Traders home'] span:nth-child(2){display:none!important}header label[aria-label='Website language'] select{max-width:68px!important}}
+      @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+    `;
     document.head.appendChild(l); document.head.appendChild(st);
     return () => { document.head.removeChild(l); document.head.removeChild(st); };
   }, []);
@@ -479,8 +526,8 @@ export default function App() {
 
       {/* HEADER */}
       <header className="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 text-white shadow-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <button onClick={() => go('home')} className="flex items-center gap-3 text-left" aria-label="Shiva Traders home">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 min-h-20 py-2 flex items-center gap-4 2xl:gap-5">
+          <button onClick={() => go('home')} className="flex items-center gap-3 text-left shrink-0 min-w-[220px]" aria-label="Shiva Traders home">
             <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-amber-600 to-orange-500 flex items-center justify-center">
               <Paintbrush className="w-6 h-6 text-slate-950" aria-hidden="true" />
             </div>
@@ -490,12 +537,17 @@ export default function App() {
             </div>
           </button>
 
-          <GoogleTranslate />
+          <label className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-slate-600 bg-slate-800 px-3 py-2 text-sm font-semibold text-white shadow-sm" aria-label="Website language">
+            <Globe className="h-4 w-4 text-amber-400" aria-hidden="true" />
+            <select value={lang} onChange={(e) => setLang(e.target.value)} className="max-w-[118px] bg-transparent text-white outline-none cursor-pointer" aria-label="Select language">
+              <option value="en" className="bg-slate-900">English</option><option value="hi" className="bg-slate-900">हिन्दी</option><option value="pa" className="bg-slate-900">ਪੰਜਾਬੀ</option>
+            </select>
+          </label>
 
-          <nav className="hidden xl:flex items-center gap-1" aria-label="Main">
+          <nav className="hidden 2xl:flex flex-1 items-center justify-center gap-0.5 min-w-0" aria-label="Main">
             {nav.map((n) => (
               <button key={n.id} onClick={() => go(n.id)} aria-current={tab === n.id ? 'page' : undefined}
-                className={`px-2.5 py-2 rounded-lg text-xs font-semibold flex items-center gap-1 ${tab === n.id ? 'bg-amber-500 text-slate-950 font-bold' : 'text-slate-300 hover:text-white hover:bg-slate-800'}`}>
+                className={`px-1.5 py-2 rounded-lg text-[11px] font-semibold flex items-center gap-1 whitespace-nowrap shrink-0 ${tab === n.id ? 'bg-amber-500 text-slate-950 font-bold' : 'text-slate-300 hover:text-white hover:bg-slate-800'}`}>
                 {n.label}
                 {n.badge && <span className="bg-orange-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded-full">{n.badge}</span>}
               </button>
@@ -507,13 +559,13 @@ export default function App() {
             <a href={wa(DEFAULT_WA)} target="_blank" rel="noopener noreferrer" className="bg-emerald-700 hover:bg-emerald-600 text-xs font-bold px-3.5 py-2.5 rounded-xl flex items-center gap-1.5"><MessageSquare className="w-3.5 h-3.5" aria-hidden="true" /> WhatsApp</a>
           </div>
 
-          <button className="xl:hidden p-2 rounded-lg bg-slate-800" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation menu" aria-expanded={menuOpen}>
+          <button className="2xl:hidden p-2 rounded-lg bg-slate-800 ml-auto shrink-0" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation menu" aria-expanded={menuOpen}>
             {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
         {menuOpen && (
-          <div className="xl:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-6 space-y-2">
+          <div className="2xl:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-6 space-y-2">
             {nav.map((n) => (
               <button key={n.id} onClick={() => go(n.id)}
                 className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium flex items-center justify-between ${tab === n.id ? 'bg-amber-500 text-slate-950 font-bold' : 'text-slate-200 hover:bg-slate-800'}`}>
@@ -538,15 +590,15 @@ export default function App() {
         {/* HOME */}
         {tab === 'home' && (
           <div className="space-y-16 pb-16">
-            <section className="relative bg-[#0e1420] text-white overflow-hidden">
+            <section className="relative bg-[#f7f6f3] text-[#292724] overflow-hidden">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-28 lg:pt-20 lg:pb-32 grid lg:grid-cols-12 gap-10 items-center">
                 <div className="lg:col-span-5 space-y-6">
-                  <p className="text-sm text-amber-300 font-semibold">{t.hero.badge}</p>
+                  <p className="text-sm text-amber-700 font-semibold">{t.hero.badge}</p>
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05]">{t.hero.a}{t.hero.b}</h1>
                   <p className="text-slate-300 text-base sm:text-lg leading-relaxed">{t.hero.sub}</p>
                   <div className="flex flex-wrap gap-3">
                     <button onClick={() => go('visualizer')} className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-full flex items-center gap-2"><Sparkles className="w-5 h-5" aria-hidden="true" /> {t.hero.preview}</button>
-                    <a href={wa(DEFAULT_WA)} target="_blank" rel="noopener noreferrer" className="bg-white/10 hover:bg-white/20 text-white font-bold px-6 py-3.5 rounded-full flex items-center gap-2"><MessageSquare className="w-5 h-5" aria-hidden="true" /> {t.hero.wa}</a>
+                    <a href={wa(DEFAULT_WA)} target="_blank" rel="noopener noreferrer" className="bg-[#e8e5df] hover:bg-[#ddd8d0] text-[#292724] font-bold px-6 py-3.5 rounded-full flex items-center gap-2 border border-[#d8d3cb]"><MessageSquare className="w-5 h-5" aria-hidden="true" /> {t.hero.wa}</a>
                   </div>
                   <ul className="flex flex-wrap gap-x-6 gap-y-2 pt-4 text-sm text-slate-300">
                     {['Asian Paints Colour Cube', 'Computerized tinting', 'SmartCare waterproofing'].map((x) => <li key={x} className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-400" aria-hidden="true" /> {L(x)}</li>)}
@@ -906,6 +958,35 @@ export default function App() {
           </div>
         )}
       </main>
+
+      {/* FLOATING QUICK CALCULATOR */}
+      {tab !== 'calculator' && (
+        <div className="fixed bottom-24 right-5 z-40 flex flex-col items-end gap-3">
+          {quickCalcOpen && (
+            <div className="w-[min(92vw,350px)] bg-white text-slate-900 border border-slate-200 rounded-2xl shadow-2xl p-4 sm:p-5 space-y-3 max-h-[75vh] overflow-y-auto" role="dialog" aria-label="Quick paint calculator">
+              <div className="flex items-center justify-between gap-3">
+                <div><h3 className="font-black text-lg">Quick Paint Calculator</h3><p className="text-xs text-slate-500">Estimate while browsing</p></div>
+                <button onClick={() => setQuickCalcOpen(false)} aria-label="Close quick calculator" className="p-2 rounded-lg hover:bg-slate-100"><X className="w-5 h-5" /></button>
+              </div>
+              <div className="flex bg-slate-100 p-1 rounded-xl">
+                {[['room', 'Room size'], ['area', 'Wall area']].map(([id, label]) => <button key={id} onClick={() => setMode(id)} aria-pressed={mode === id} className={`flex-1 py-2 rounded-lg text-xs font-bold ${mode === id ? 'bg-amber-500 text-slate-950' : 'text-slate-600'}`}>{label}</button>)}
+              </div>
+              {mode === 'room' ? <div className="grid grid-cols-3 gap-2">
+                {[['l','Length'],['w','Width'],['h','Height']].map(([k,label]) => <label key={k} className="text-[11px] font-bold text-slate-600">{label} (ft)<input type="number" min="0" value={dims[k]} onChange={setDim(k)} className="w-full mt-1 px-2 py-2 rounded-lg border border-slate-200 text-sm" /></label>)}
+              </div> : <label className="block text-xs font-bold text-slate-600">Wall area (sq. ft.)<input type="number" min="0" value={dims.area} onChange={setDim('area')} className="w-full mt-1 px-3 py-2 rounded-lg border border-slate-200 text-sm" /></label>}
+              <div className="grid grid-cols-3 gap-2">
+                {[['doors','Doors'],['windows','Windows']].map(([k,label]) => <label key={k} className="text-[11px] font-bold text-slate-600">{label}<input type="number" min="0" value={dims[k]} onChange={setDim(k)} className="w-full mt-1 px-2 py-2 rounded-lg border border-slate-200 text-sm" /></label>)}
+                <label className="text-[11px] font-bold text-slate-600">Coats<select value={dims.coats} onChange={setDim('coats')} className="w-full mt-1 px-2 py-2 rounded-lg border border-slate-200 text-sm"><option value={1}>1</option><option value={2}>2</option><option value={3}>3</option></select></label>
+              </div>
+              <label className="block text-xs font-bold text-slate-600">Paint type<select value={tier} onChange={(e) => setTier(e.target.value)} className="w-full mt-1 px-3 py-2 rounded-lg border border-slate-200 text-sm">{Object.entries(TIERS).map(([id,tr]) => <option key={id} value={id}>{tr.name} (~₹{tr.price}/L)</option>)}</select></label>
+              <div className="grid grid-cols-2 gap-2 text-xs"><label className="flex items-center gap-2"><input type="checkbox" checked={primer} onChange={(e) => setPrimer(e.target.checked)} />Primer</label><label className="flex items-center gap-2"><input type="checkbox" checked={putty} onChange={(e) => setPutty(e.target.checked)} />Wall putty</label></div>
+              <div className="rounded-xl bg-amber-50 border border-amber-100 p-3 space-y-1"><p className="text-xs text-slate-500">Net paintable area: <strong>{calc.net} sq. ft.</strong></p><p className="text-sm font-bold">Paint: {calc.paint} L{primer ? ` · Primer: ${calc.primer} L` : ''}{putty ? ` · Putty: ${calc.putty} kg` : ''}</p><p className="text-xl font-black text-amber-700">Approx. ₹{calc.cost.toLocaleString('en-IN')}</p><p className="text-[10px] text-slate-500">Indicative material cost; excludes labour.</p></div>
+              <button onClick={() => { setQuickCalcOpen(false); go('calculator'); }} className="w-full py-2.5 rounded-xl bg-slate-900 text-white text-sm font-bold">Open full calculator</button>
+            </div>
+          )}
+          <button onClick={() => setQuickCalcOpen(!quickCalcOpen)} aria-label={quickCalcOpen ? 'Close quick calculator' : 'Open quick calculator'} aria-expanded={quickCalcOpen} className="w-14 h-14 rounded-full bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-xl flex items-center justify-center border-2 border-white"><Calculator className="w-6 h-6" /></button>
+        </div>
+      )}
 
       <a href={wa(DEFAULT_WA)} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp" className="fixed bottom-5 right-5 z-40 bg-emerald-600 hover:bg-emerald-500 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center"><MessageSquare className="w-6 h-6" aria-hidden="true" /></a>
 
