@@ -190,8 +190,8 @@ function GoogleTranslate() {
 const BIZ = {
   name: 'Shiva Traders – Asian Paints Colour Cube',
   address: 'SCO 423, Green City, Dhakoli, Zirakpur, Punjab 140603, India.',
-  phone1: '919988549329', phone1Fmt: '99885 49329',
-  phone2: '919888662449', phone2Fmt: '98886 62449',
+  phone1: '919888662449', phone1Fmt: '98886 62449',
+  phone2: '919988549329', phone2Fmt: '99885 49329',
   hours: 'Tue – Sun: 9:00 AM – 8:30 PM (Monday: half day, please call to confirm)',
   maps: 'https://www.google.com/maps/dir/?api=1&destination=Shiva+Traders+Asian+Paints+Colour+Cube,+SCO+423,+Green+City,+Dhakoli,+Zirakpur,+Punjab+140603',
   review: 'https://share.google/qmktaN7FQg2idfbm3',
